@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>Humidor control</title>
+	<link href="static/style.css" rel="stylesheet" type="text/css">
+	<!--[if lte IE 8]><script language="javascript" type="text/javascript" src="static/excanvas.min.js"></script><![endif]-->
+	<script language="javascript" type="text/javascript" src="static/jquery.min.js"></script>
+	<script language="javascript" type="text/javascript" src="static/jquery.flot.min.js"></script>
+	<script language="javascript" type="text/javascript" src="static/jquery.flot.time.min.js"></script>
+	<script type="text/javascript">
+	$(function() {
+
+		var temperatures = {{.TemperatureValues}};
+		var humidity = {{.HumidityValues}};
+
+		var markings = [
+{{range $idx,$val := .Events}}
+			{ color: "#7ac240", lineWidth: 1, xaxis: { from: {{index $val 0}}, to: {{index $val 1}} } },
+{{end}}
+		];
+		
+		var container = $("#placeholder");
+		$.plot(container, [
+				{ data: temperatures, label: "Température (°C)" },
+				{ data: humidity, label: "Taux d'humidité (%)", yaxis: 2 },
+{{if .Events}}
+				{ data: [], label: "Ouverture de l'humidoor", color: "#7ac240" }
+{{end}}
+			], {
+				xaxes: [ { mode: "time" } ],
+				yaxes: [ {  }, {
+					// align if we are to the right
+					alignTicksWithAxis: 1,
+					position: "right"
+					} ],
+				legend: { position: "sw" },
+				grid: { markings: markings }
+			}
+		);
+
+		
+	});
+
+	</script>
+</head>
+<body>
+
+	<div id="content">
+		
+		<h2>Données complètes</h2>
+		<div class="chart-container">
+			<div id="placeholder" class="chart-placeholder"></div>
+		</div>
+
+		
+
+	</div>
+
+</body>
+</html>
