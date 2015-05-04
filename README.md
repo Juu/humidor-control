@@ -1,5 +1,5 @@
 # humidor-control
-Watch humidity, temperature and other events in your humidor, measured by an Arduino and sent to a web server.
+Watch humidity, temperature and other events from your humidor on a web interface, all measured by an Arduino.
 
 ## Arduino part
 Coming soon.
@@ -14,7 +14,7 @@ Then launch the server:
 
     go run websvr.go
 
-Then open your browser at http://localhost:1664
+And open your browser at http://localhost:1664
 
 
 ### How to get test data without an Arduino
@@ -36,7 +36,7 @@ Alternately, send HTTP GET requests by yourself to `http://localhost:1664/add` (
 
 Params d, t, h and e can be repeated n times to save n measurements in the db
 
-Params t, h and e can be empty but should exist.
+Params t, h and e can be empty but should exist, particularly when the query holds several measurements.
 
 Example:
 
