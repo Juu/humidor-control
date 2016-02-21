@@ -1,0 +1,7 @@
+
+- 1x Arduino Uno
+- 1x Ethernet shield
+
+- 1x DHT11 humidity sensor
+- 1x 10kΩ resistor
+
