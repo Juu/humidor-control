@@ -29,10 +29,18 @@
 {{end}}
 			], {
 				xaxes: [ { mode: "time", timezone: "browser" } ],
-				yaxes: [ {  }, {
-					// align if we are to the right
-					alignTicksWithAxis: 1,
-					position: "right"
+				yaxes: [ { 
+						tickFormatter: function(value, axis) {
+							return value.toFixed(axis.tickDecimals) + " °C";
+						}
+					}, 
+					{
+						// align if we are to the right
+						alignTicksWithAxis: 1,
+						position: "right",
+						tickFormatter: function(value, axis) {
+							return value.toFixed(axis.tickDecimals) + " %";
+						}
 					} ],
 				legend: { position: "sw" },
 				grid: { markings: markings }
