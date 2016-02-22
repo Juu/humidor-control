@@ -6,6 +6,13 @@ Coming soon.
 
 ## Web server part (Go)
 
+go-sqlite3 library must be installed:
+
+    go install github.com/mattn/go-sqlite3
+Other way to get it, there is for example a debian package:
+
+    apt-get install golang-github-mattn-go-sqlite3-dev
+
 First, start with generating your "api key":
 
     go run createApiKey.go
