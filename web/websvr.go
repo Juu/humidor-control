@@ -18,6 +18,8 @@ import (
 )
 
 const (
+	port = ":1664"
+
 	templateDir  = "tmpl/"
 	templateView = templateDir + "view.html"
 
@@ -103,7 +105,7 @@ func main() {
 	http.Handle("/", http.HandlerFunc(View))
 	http.Handle("/add", http.HandlerFunc(Add))
 	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("./static"))))
-	err := http.ListenAndServe(":1664", nil)
+	err := http.ListenAndServe(port, nil)
 	if err != nil {
 		log.Fatal("ListenAndServe: ", err)
 	}
