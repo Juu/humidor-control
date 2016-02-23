@@ -105,6 +105,8 @@ func main() {
 	http.Handle("/", http.HandlerFunc(View))
 	http.Handle("/add", http.HandlerFunc(Add))
 	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("./static"))))
+	// Avoid /favicon.ico request to call View function and return a HTTP 404
+	http.Handle("/favicon.ico", http.NotFoundHandler())
 	err := http.ListenAndServe(port, nil)
 	if err != nil {
 		log.Fatal("ListenAndServe: ", err)
