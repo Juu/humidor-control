@@ -14,8 +14,8 @@
 
 // Temperature and humidity values adjustment, if your sensor values are below (adjust with a positive integer) or above (negative int) reality.
 // For no adjustment, set to 0
-#define TEMPERATURE_ADJUSTMENT   2
-#define HUMIDITY_ADJUSTMENT      12
+#define TEMPERATURE_ADJUSTMENT    2
+#define HUMIDITY_ADJUSTMENT       12
 
 // Humidity sensor pin and type
 #define DHTPIN 2     // what digital pin we're connected to
@@ -23,6 +23,11 @@
 #define DHTTYPE DHT11   // DHT 11
 //#define DHTTYPE DHT22   // DHT 22  (AM2302), AM2321
 //#define DHTTYPE DHT21   // DHT 21 (AM2301)
+
+
+// ************** Doors open/closed button configuration
+
+#define BUTTONPIN                 3
 
 
 // ************** Ethernet configuration - global
@@ -73,6 +78,8 @@ int port = 1664;
 // Initialize DHT object
 DHT dht(DHTPIN, DHTTYPE);
 
+int lastButtonStatus = LOW;
+
 const int NTP_PACKET_SIZE = 48; // NTP time stamp is in the first 48 bytes of the message
 byte packetBuffer[NTP_PACKET_SIZE]; //buffer to hold incoming and outgoing packets
 
@@ -92,6 +99,8 @@ struct measurement {
   unsigned long time;
   int temperature;
   int humidity;
+  int doorOpening;
+  int doorClosing;
 };
 
 
@@ -99,6 +108,9 @@ void setup() {
   // DHT sensor init
   dht.begin();
 
+  // initialize the pushbutton pin as an input
+  pinMode(BUTTONPIN, INPUT);
+  
   #if DEBUG
     // Serial used for debug
     Serial.begin(9600);
@@ -125,6 +137,17 @@ void loop() {
 
   unsigned long time = getTime();
 
+  int buttonStatus = digitalRead(BUTTONPIN);
+  if (buttonStatus != lastButtonStatus) {
+    printTime(time);
+    debug("Button status changed to: ")
+    debugln(buttonStatus);
+
+    sendMeasurement({time, 0, 0, buttonStatus==HIGH, buttonStatus==LOW});
+
+    lastButtonStatus = buttonStatus;
+  }
+  
   // Do a new temperature and humidity measurement for the first time or if interval since last one reached MEASUREMENT_INTERVAL value
   if (time - lastMeasurementTime >= MEASUREMENT_INTERVAL) {
     lastMeasurementTime = time;
@@ -139,7 +162,7 @@ void loop() {
     debug(t);
     debug(" *C \n");
 
-    sendMeasurement({time, t, h});
+    sendMeasurement({time, t, h, false, false});
     
   }
   
@@ -256,7 +279,7 @@ void sendMeasurement(measurement m) {
     // Make a HTTP request:
 
     char req[256];
-    sprintf(req, "GET /add?apiKey=%s&d=%lu&t=%d&h=%d HTTP/1.1", API_KEY, m.time, m.temperature, m.humidity);
+    sprintf(req, "GET /add?apiKey=%s&d=%lu&t=%d&h=%d&e=%s HTTP/1.1", API_KEY, m.time, m.temperature, m.humidity, m.doorOpening ? "DO" : (m.doorClosing ? "DC" : "0"));
     debugln(req);
     client.println(req);
     client.println("Host: myStatServer.net");
