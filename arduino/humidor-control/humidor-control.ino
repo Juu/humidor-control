@@ -10,7 +10,7 @@
 // ************** Humidity/temperature sensor configuration
 
 // Time interval between each temperature/humidity measurements (seconds)
-#define MEASUREMENT_INTERVAL      5*60//1*60 // 1 minute
+#define MEASUREMENT_INTERVAL      5*60 // 5 minutes
 
 // Temperature and humidity values adjustment, if your sensor values are below (adjust with a positive integer) or above (negative int) reality.
 // For no adjustment, set to 0

@@ -1,0 +1,7 @@
+
+v1.1
+Replaced sensor with a DHT11 module with built-in 5k resistor
+
+v1.0
+Measuring with a DHT11 sensor
+
