@@ -51,4 +51,4 @@ Example:
 
 ## Limitations
 
-Only the "api key" currently prevents anybody to send whatever data they want to your server, but as everything is in cleartext in the query string, sniffing the requests between Arduino and the server is enough
+Only the "api key" currently prevents anybody to send whatever data they want to your server, but as everything is in cleartext in the query string, sniffing the requests between Arduino and the server is enough. Using this outside your local network is at your own risk.
