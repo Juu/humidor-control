@@ -5,6 +5,6 @@
 - 1x DHT11 humidity sensor (accuracy: +-5% RH ; +-2°C)
 - 1x 10kΩ or 5kΩ resistor
 
-- 1x pushbutton that closes the circuit when pressed
+- 1x or more pushbutton
 - 1x 10kΩ resistor
 

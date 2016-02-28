@@ -1,7 +1,11 @@
 
+v1.2
+Added buttons for sensing doors opening
+
 v1.1
 Replaced sensor with a DHT11 module with built-in 5k resistor
 
 v1.0
+Using an Arduino Uno and an ethernet shield
 Measuring with a DHT11 sensor
 
