@@ -2,7 +2,7 @@
 Watch humidity, temperature and other events from your humidor on a web interface, all measured by an Arduino.
 
 ## Arduino part
-Wire up your circuit as shown in wiring* files with components listed in hardware.txt.
+Wire up your circuit as shown in wiring* scheme with components listed in hardware.txt.
 
 Review configuration constants at the beginning of the sketch (serial debugging, sensor, button, network), then upload it to your Arduino.
 
