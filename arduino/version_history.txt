@@ -1,4 +1,8 @@
 
+v1.3
+Light up the humidor (w/ external 12V leds) when door is open.
+Arduino can be powered with external 12V DC input
+
 v1.2
 Added buttons for sensing doors opening
 

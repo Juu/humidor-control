@@ -1,10 +1,16 @@
 
+Basics:
 - 1x Arduino Uno
 - 1x Ethernet shield
 
+Humidity/temperature sensor:
 - 1x DHT11 humidity sensor (accuracy: +-5% RH ; +-2°C)
 - 1x 10kΩ or 5kΩ resistor (as pull-up)
 
+Detecting door opening:
 - 1x or more pushbutton
 - 1x 10kΩ resistor (pull-down)
 
+To light up external 12V leds on door opening:
+- 1x diode 1N4001 series (just to be sure the 12V current is properly wired)
+- 1x n-type MOSFET IRF520
