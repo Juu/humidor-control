@@ -6,7 +6,10 @@ Wire up your circuit as shown in wiring* scheme with components listed in hardwa
 
 Review configuration constants at the beginning of the sketch (serial debugging, sensor, button, network), then upload it to your Arduino.
 
-It currently uses an Arduino Uno and ethernet shield, with a few components. Project is to manage logic and networking with a ESP-01 wifi module.
+This is version 1, using an Arduino Uno and ethernet shield. V2 will manage logic and networking with a ESP-01 wifi module.
+
+About current consumption, I was able to measure 210 mA used by the boards, the ethernet shield taking about 150 mA itself (without any optimization so far).
+My external 12V led ribbon consume 270 additional milliamps.
 
 ## Web server part (Go)
 
