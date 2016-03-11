@@ -4,9 +4,10 @@ Watch humidity, temperature and other events from your humidor on a web interfac
 ## Arduino part
 Wire up your circuit as shown in wiring* scheme with components listed in hardware.txt.
 
-Review configuration constants at the beginning of the sketch (serial debugging, sensor, button, network), then upload it to your Arduino.
+Review configuration constants at the beginning of the sketch (serial debugging, sensor, button, network), then upload it to your ESP8266.
 
-It currently uses an Arduino Uno and ethernet shield, with a few components. Project is to manage logic and networking with a ESP-01 wifi module.
+This version uses a ESP-01 wifi module to manage logic and networking.
+V1 was based on an Arduino Uno and ethernet shield.
 
 ## Web server part (Go)
 
