@@ -1,4 +1,8 @@
 
+v2.0
+Replaces Arduino and shield with an ESP-01 module
+Added a 3.3V voltage regulator to supply the complete setup with the 12V input
+
 v1.3
 Light up the humidor (w/ external 12V leds) when door is open.
 Arduino can be powered with external 12V DC input
